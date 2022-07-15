@@ -1,20 +1,29 @@
 let listLink = [];
-menu();
+let option = '';
 
-function menu() {
-  let option = prompt(`Elija una opcion:
-        i = ingresar
-        ls = listar
-        q = salir`);
+init();
 
-  while (option !== "q") {
+function init() {
+do {
+    menu();
     if (option && option === "i") {
       addLink();
     } else if (option === "ls") {
       showListLink();
     } else alert("Ingrese una opcion valida");
-    menu();
-  }
+  } while (option !== 'q')
+}
+
+
+// Helpers
+
+function menu() {
+  option = prompt(`Elija una opcion:
+    i = ingresar
+    ls = listar
+    q = salir`);
+
+    return option
 }
 
 function addLink() {
@@ -23,7 +32,7 @@ function addLink() {
   alert(`Ud. ingresó el siguiente link: ${newLink}`);
 
   let keepAdding = confirm("Desea ingresar otro link?");
-  keepAdding ? addLink() : menu();
+  keepAdding ? addLink() : init();
 }
 
 function showListLink() {
@@ -31,5 +40,5 @@ function showListLink() {
     "La lista de links al momento contiene:\n**************************************\n" +
       listLink.join("\n")
   );
-  menu();
+  init();
 }
